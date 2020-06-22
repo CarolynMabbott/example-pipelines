@@ -1,16 +1,16 @@
 apiVersion: triggers.tekton.dev/v1alpha1
 kind: TriggerBinding
 metadata:
-  ref: simple-pipeline-push-binding
+  name: simple-pipeline-push-binding
 spec:
   params:
-  - name: gitrevision
+  - ref: gitrevision
     value: $(body.head_commit.id)
-  - name: gitrepositoryurl
+  - ref: gitrepositoryurl
     value: $(body.repository.clone_url)
-  - name: docker-tag
+  - ref: docker-tag
     value: $(body.repository.name):$(body.head_commit.id)
-  - name: event-type
+  - ref: event-type
     value: $(header.X-Github-Event)
-  - name: webhooks-tekton-git-branch
+  - ref: webhooks-tekton-git-branch
     value: $(body.webhooks-tekton-git-branch)
